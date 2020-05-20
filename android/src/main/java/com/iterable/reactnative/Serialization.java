@@ -1,10 +1,10 @@
 package com.iterable.reactnative;
 
-import androidx.annotation.Nullable;
-
 import com.iterable.iterableapi.IterableInAppCloseAction;
 import com.iterable.iterableapi.IterableInAppDeleteActionType;
 import com.iterable.iterableapi.IterableInAppLocation;
+
+import androidx.annotation.Nullable;
 
 public class Serialization {
 

@@ -1,15 +1,10 @@
 package com.iterable.reactnative;
 
-import android.net.Uri;
-
-import androidx.annotation.Nullable;
-
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.iterable.iterableapi.IterableApi;
 import com.iterable.iterableapi.IterableHelper;
@@ -18,6 +13,9 @@ import com.iterable.iterableapi.IterableInAppLocation;
 import com.iterable.iterableapi.IterableInAppMessage;
 import com.iterable.iterableapi.IterableLogger;
 import com.iterable.iterableapi.RNIterableInternal;
+
+import android.net.Uri;
+import androidx.annotation.Nullable;
 
 public class RNIterableAPIModule extends ReactContextBaseJavaModule {
 
@@ -81,16 +79,6 @@ public class RNIterableAPIModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void updateSubscriptions(ReadableArray emailListIds, ReadableArray unsubscribedChannelIds, ReadableArray unsubscribedMessageTypeIds, ReadableArray subscribedMessageTypeIds, Integer campaignId, Integer templateId) {
-        IterableLogger.v(TAG, "updateSubscriptions");
-        IterableApi.getInstance().updateSubscriptions(readableArrayToIntegerArray(emailListIds),
-                readableArrayToIntegerArray(unsubscribedChannelIds),
-                readableArrayToIntegerArray(unsubscribedMessageTypeIds),
-                readableArrayToIntegerArray(subscribedMessageTypeIds),
-                campaignId,
-                templateId);
-	}
-
     public void showMessage(String messageId, boolean consume, final Promise promise) {
         if (messageId == null || messageId == "") {
             return;
@@ -152,11 +140,5 @@ public class RNIterableAPIModule extends ReactContextBaseJavaModule {
     // ---------------------------------------------------------------------------------------
     // endregion
 
-    private static Integer[] readableArrayToIntegerArray(ReadableArray array) {
-        Integer[] integers = new Integer[array.size()];
-        for (int i = 0; i < array.size(); i++) {
-            integers[i] = array.getInt(i);
-        }
-        return integers;
-    }
+
 }
