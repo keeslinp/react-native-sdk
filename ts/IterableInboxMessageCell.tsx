@@ -8,11 +8,13 @@ import {
 } from "react-native"
 
 type MessageCellProps = {
+   index: number,
    message: {[key: string]: any},
+   handleMessageSelect: Function,
    last: boolean 
 }
 
-const IterableInboxMessageCell = ({ message, last }: MessageCellProps) => {
+const IterableInboxMessageCell = ({ index, message, handleMessageSelect, last }: MessageCellProps) => {
    const unreadIndicator = "\u2022";
    const messageTitle = message.inboxMetadata.title
    const messageBody = message.inboxMetadata.subtitle
@@ -21,6 +23,7 @@ const IterableInboxMessageCell = ({ message, last }: MessageCellProps) => {
    function displayUnreadMessage() {
       return (
          <Pressable
+            onPress={() => handleMessageSelect(index)}
             style={({ pressed }) => [
                (pressed) ? styles.pressedMessageCell : styles.messageCell
             ]}
@@ -39,6 +42,7 @@ const IterableInboxMessageCell = ({ message, last }: MessageCellProps) => {
    function displayReadMessage() {
       return (
          <Pressable
+            onPress={() => handleMessageSelect(index)}
             style={({ pressed }) => [
                (pressed) ? styles.pressedMessageCell : styles.messageCell
             ]}
@@ -56,6 +60,7 @@ const IterableInboxMessageCell = ({ message, last }: MessageCellProps) => {
    function displayUnreadLastMessage() {
       return (
          <Pressable
+            onPress={() => handleMessageSelect(index)}
             style={({ pressed }) => [
                (pressed) ? styles.pressedLastMessageCell : styles.lastMessageCell
             ]}
@@ -74,6 +79,7 @@ const IterableInboxMessageCell = ({ message, last }: MessageCellProps) => {
    function displayReadLastMessage() {
       return (
          <Pressable
+            onPress={() => handleMessageSelect(index)}
             style={({ pressed }) => [
                (pressed) ? styles.pressedLastMessageCell : styles.lastMessageCell
             ]}
