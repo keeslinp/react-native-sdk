@@ -3,8 +3,8 @@ import React, { Component } from "react"
 import { 
    View, 
    Text, 
-   StyleSheet, 
-   Pressable 
+   StyleSheet,
+   Pressable
 } from "react-native"
 
 type MessageCellProps = {
@@ -38,38 +38,52 @@ const IterableInboxMessageCell = ({ message, last }: MessageCellProps) => {
 
    function displayReadMessage() {
       return (
-         <View style={styles.messageCell}>
-            <View style={styles.readMessageContainer}>
-               <Text style={styles.title}>{messageTitle}</Text>
-               <Text style={styles.body}>{messageBody}</Text>
-               <Text style={styles.timestamp}>{messageCreatedAt}</Text>
-            </View>   
-         </View>)    
+         <Pressable
+            style={({ pressed }) => [
+               (pressed) ? styles.pressedMessageCell : styles.messageCell
+            ]}
+         > 
+            <View style={styles.messageCell}>
+               <View style={styles.readMessageContainer}>
+                  <Text style={styles.title}>{messageTitle}</Text>
+                  <Text style={styles.body}>{messageBody}</Text>
+                  <Text style={styles.timestamp}>{messageCreatedAt}</Text>
+               </View>   
+            </View>
+         </Pressable>)    
    }
 
    function displayUnreadLastMessage() {
       return (
-         <View style={styles.lastMessageCell}>
+         <Pressable
+            style={({ pressed }) => [
+               (pressed) ? styles.pressedLastMessageCell : styles.lastMessageCell
+            ]}
+         > 
             <View style={styles.unreadIndicatorContainer}>
-                  <View style={styles.unreadIndicator}/>
+               <View style={styles.unreadIndicator}/>
             </View>
             <View style={styles.unreadMessageContainer}>
                <Text style={styles.title}>{messageTitle}</Text>
                <Text style={styles.body}>{messageBody}</Text>
                <Text style={styles.timestamp}>{messageCreatedAt}</Text>
             </View>    
-         </View>)    
+         </Pressable>)    
    }
 
    function displayReadLastMessage() {
       return (
-         <View style={styles.lastMessageCell}>
+         <Pressable
+            style={({ pressed }) => [
+               (pressed) ? styles.pressedLastMessageCell : styles.lastMessageCell
+            ]}
+         > 
             <View style={styles.readMessageContainer}>
-               <Text style={styles.title}>{messageTitle}</Text>
+                  <Text style={styles.title}>{messageTitle}</Text>
                <Text style={styles.body}>{messageBody}</Text>
                <Text style={styles.timestamp}>{messageCreatedAt}</Text>
             </View>     
-         </View>)    
+         </Pressable>)    
    }
 
    return(

@@ -4,7 +4,8 @@ import { ScrollView, Text, StyleSheet } from 'react-native'
 import IterableInboxMessageCell from './IterableInboxMessageCell'
 
 type MessageListProps = {
-   messages: Array<any>  
+   messages: Array<any>,
+   handleMessageSelect: Function  
 }
 
 const IterableInboxMessageList = ({ messages }: MessageListProps) => {
